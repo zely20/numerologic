@@ -1,4 +1,4 @@
-package by.zelenko.numerologic.Model;
+package by.zelenko.numerologic.backend.Model;
 
 public enum Role {
 
