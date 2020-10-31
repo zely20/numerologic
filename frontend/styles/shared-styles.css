@@ -1,0 +1,41 @@
+button {
+    background-color: #000088;
+    color: white;
+}
+
+/* List view */
+.admin-view .content {
+    display: flex;
+}
+
+.admin-view .user-grid {
+    flex: 2;
+}
+
+.admin-view .user-form {
+    flex: 1;
+    padding: var(--lumo-space-m);
+}
+
+@media all and (max-width: 1100px) {
+    .admin-view.editing .toolbar,
+    .admin-view.editing .user-grid {
+        display: none;
+    }
+}
+
+/* Main layout */
+
+a[highlight] {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.header {
+    padding: 0 var(--lumo-space-m);
+}
+
+.header h1.logo {
+    font-size: 1em;
+    margin: var(--lumo-space-m);
+}

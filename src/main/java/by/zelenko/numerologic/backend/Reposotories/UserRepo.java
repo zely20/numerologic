@@ -1,6 +1,6 @@
-package by.zelenko.numerologic.backend.Model.Reposotories;
+package by.zelenko.numerologic.backend.Reposotories;
 
-import by.zelenko.numerologic.backend.Model.User;
+import by.zelenko.numerologic.backend.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -15,7 +15,7 @@
 	<description>Application for Numerologic</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>13</java.version>
 		<vaadin.version>14.4.2</vaadin.version>
 		<log4j.version>1.2.17</log4j.version>
 	</properties>
@@ -29,7 +29,11 @@
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-spring-boot-starter</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.4.2.Final</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

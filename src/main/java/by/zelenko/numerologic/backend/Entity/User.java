@@ -1,7 +1,8 @@
-package by.zelenko.numerologic.backend.Model;
+package by.zelenko.numerologic.backend.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,11 +20,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
+    @NotEmpty(message = "Введите имя пользователя")
     @Column(name = "user_name")
-    private String userName;
+    private String userName = "";
     @NotNull
+    @NotEmpty(message = "Введите пароль")
     @Column(name = "password")
-    private String password;
+    private String password = "";
     @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
     private Role role;
