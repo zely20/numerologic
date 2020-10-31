@@ -23,9 +23,12 @@ public class User {
     @NotNull
     @Column(name = "password")
     private String password;
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "role")
     private Role role;
-
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
+    private Status status;
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy = "user")

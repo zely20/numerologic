@@ -1,4 +1,6 @@
 package by.zelenko.numerologic.Model;
 
-public class Role {
+public enum Role {
+
+    ROLE_ADMIN, ROLE_USER;
 }
