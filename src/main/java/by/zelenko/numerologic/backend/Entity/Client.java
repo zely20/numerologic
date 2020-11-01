@@ -26,11 +26,9 @@ public class Client {
     private String lastName;
     @Column(name = "birth_day")
     private LocalDate birthDay;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
     public Client() {
     }
 

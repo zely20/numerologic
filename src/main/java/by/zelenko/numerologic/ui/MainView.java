@@ -38,6 +38,4 @@ public class MainView extends AppLayout {
         header.addClassName("header");
         addToNavbar(header);
     }
-
-
 }
