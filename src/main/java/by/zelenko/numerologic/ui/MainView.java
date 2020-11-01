@@ -22,14 +22,14 @@ public class MainView extends AppLayout {
     }
 
     private void createDrawer() {
-        RouterLink listLink = new RouterLink("List", ListView.class);
+        RouterLink listLink = new RouterLink("База Клиентов", ListView.class);
         RouterLink squareLink = new RouterLink("Квадрат", SquareView.class);
         listLink.setHighlightCondition(HighlightConditions.sameLocation());
         addToDrawer(new VerticalLayout(listLink), new VerticalLayout(squareLink));
     }
 
     private void createHeader() {
-        H1 logo = new H1("Numerologic");
+        H1 logo = new H1("Numerology");
         logo.addClassName("logo");
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo);
         header.setDefaultVerticalComponentAlignment(
@@ -37,6 +37,7 @@ public class MainView extends AppLayout {
         header.setWidth("100%");
         header.addClassName("header");
         addToNavbar(header);
-
     }
+
+
 }

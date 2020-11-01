@@ -1,7 +1,7 @@
 package by.zelenko.numerologic.backend.Reposotories;
 
-import org.springframework.stereotype.Repository;
+import by.zelenko.numerologic.backend.Entity.Client;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public class ClientRepo {
+public class ClientRepo extends JpaRepository<Client, Long > {
 }

@@ -11,7 +11,6 @@ import com.vaadin.flow.router.Route;
 public class SquareView extends VerticalLayout {
    Grid grid = new Grid();
 
-
     public SquareView() {
         grid.setSelectionMode(Grid.SelectionMode.NONE);
         grid.addColumn("name");

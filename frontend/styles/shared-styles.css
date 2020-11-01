@@ -1,6 +1,8 @@
 button {
-    background-color: #000088;
-    color: white;
+    background-color: -internal-light-dark;
+    color: blue;
+    margin: var(--lumo-button);
+    border-bottom-color: black;
 }
 
 /* List view */
@@ -23,9 +25,7 @@ button {
         display: none;
     }
 }
-
 /* Main layout */
-
 a[highlight] {
     font-weight: bold;
     text-decoration: underline;
@@ -38,4 +38,12 @@ a[highlight] {
 .header h1.logo {
     font-size: 1em;
     margin: var(--lumo-space-m);
+}
+
+.content{
+    background-color: #ececec;
+}
+
+.user-grid {
+    background-color: #eeeeee;
 }

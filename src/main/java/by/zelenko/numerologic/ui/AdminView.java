@@ -30,6 +30,7 @@ public class AdminView extends VerticalLayout {
     private UserForm form;
 
     public AdminView(@Autowired UserService userService) {
+        setHorizontalComponentAlignment(Alignment.CENTER,header);
         this.userService = userService;
         addClassName("admin-view");
         header.add(h1);
@@ -75,6 +76,7 @@ public class AdminView extends VerticalLayout {
 
     private void configGrid() {
         addClassName("user-grid");
+
         setSizeFull();
         grid.setColumns("userName", "role", "status");
         grid.addColumn(
