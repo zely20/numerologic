@@ -38,6 +38,7 @@ public class UserService {
     }
 
     public void delete(User user) {
+        LOG.log(Level.DEBUG, "from UserServise delete");
         userRepo.delete(user);
     }
 
@@ -47,5 +48,9 @@ public class UserService {
             return;
         }
         userRepo.save(user);
+    }
+
+    public User findByUsername (String username){
+        return userRepo.findByUsername(username);
     }
 }

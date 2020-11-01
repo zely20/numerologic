@@ -1,6 +1,7 @@
 package by.zelenko.numerologic.backend.Service;
 
 import by.zelenko.numerologic.backend.Entity.Client;
+import by.zelenko.numerologic.backend.Entity.User;
 import by.zelenko.numerologic.backend.Reposotories.ClientRepo;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
@@ -14,10 +15,13 @@ import java.util.List;
 public class ClientService {
 
     private final ClientRepo clientRepo;
-    private static final Logger LOG = LogManager.getLogger(UserService.class.getName());
+    private final UserService userService;
+    private static final Logger LOG = LogManager.getLogger(ClientService.class.getName());
 
-    public ClientService(@Autowired ClientRepo clientRepo) {
+    @Autowired
+    public ClientService(ClientRepo clientRepo, UserService userService) {
         this.clientRepo = clientRepo;
+        this.userService = userService;
     }
 
     public List<Client> findAll(){
@@ -38,6 +42,8 @@ public class ClientService {
     }
 
     public void delete(Client client) {
+        LOG.log(Level.DEBUG, "from ClientServise delete");
+        System.out.println(client);
         clientRepo.delete(client);
     }
 
@@ -45,6 +51,10 @@ public class ClientService {
         if (client == null) {
             LOG.log(Level.DEBUG, "Contact is null. Are you sure you have connected your form to the application?");
             return;
+        }
+        if(client.getUser() == null){
+            User user = userService.findByUsername("Alex");
+            client.setUser(user);
         }
         clientRepo.save(client);
     }

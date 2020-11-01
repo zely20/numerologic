@@ -22,7 +22,7 @@ public class User {
     @NotNull
     @NotEmpty(message = "Введите имя пользователя")
     @Column(name = "user_name")
-    private String userName = "";
+    private String username = "";
     @NotNull
     @NotEmpty(message = "Введите пароль")
     @Column(name = "password")
@@ -33,10 +33,10 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private Status status;
-    @OneToMany(cascade = CascadeType.ALL,
+    /*@OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             mappedBy = "user")
-    private Set<Client> clients = new HashSet<>();
+    private Set<Client> clients = new HashSet<>();*/
 
     public User() {
     }
@@ -47,15 +47,25 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(id, user.id) &&
-                Objects.equals(userName, user.userName) &&
+                Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
                 role == user.role &&
-                status == user.status &&
-                Objects.equals(clients, user.clients);
+                status == user.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, password, role, status, clients);
+        return Objects.hash(id, username, password, role, status);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", status=" + status +
+                '}';
     }
 }

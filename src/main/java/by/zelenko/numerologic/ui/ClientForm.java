@@ -30,7 +30,7 @@ public class ClientForm extends FormLayout {
     public ClientForm() {
         addClassName("client-form");
         binder.bindInstanceFields(this);
-        add(firstName,
+        add(    firstName,
                 LastName,
                 birthDay,
                 createButtonsLayout());
@@ -45,8 +45,8 @@ public class ClientForm extends FormLayout {
         close.addClickShortcut(Key.ESCAPE);
 
         save.addClickListener(click -> validateAndSave());
-        delete.addClickListener(click -> fireEvent(new ClientForm.DeleteEvent(this, client)));
-        close.addClickListener(click -> fireEvent(new ClientForm.CloseEvent(this)));
+        delete.addClickListener(click -> fireEvent(new DeleteEvent(this, client)));
+        close.addClickListener(click -> fireEvent(new CloseEvent(this)));
 
         binder.addStatusChangeListener(evt -> save.setEnabled(binder.isValid()));
 
@@ -87,7 +87,7 @@ public class ClientForm extends FormLayout {
         }
     }
 
-    public static class DeleteEvent extends ClientForm.ClientFormEvent {
+    public static class DeleteEvent extends ClientFormEvent {
         DeleteEvent(ClientForm source, Client client) {
             super(source, client);
         }

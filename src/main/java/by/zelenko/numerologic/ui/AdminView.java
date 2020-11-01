@@ -78,7 +78,7 @@ public class AdminView extends VerticalLayout {
         addClassName("user-grid");
 
         setSizeFull();
-        grid.setColumns("userName", "role", "status");
+        grid.setColumns("username", "role", "status");
         grid.addColumn(
                 new NativeButtonRenderer<>("Удалить пользователя",
                         clickedItem -> {

@@ -1,7 +1,9 @@
 package by.zelenko.numerologic.ui;
 
 import by.zelenko.numerologic.backend.Entity.Client;
+import by.zelenko.numerologic.backend.Entity.User;
 import by.zelenko.numerologic.backend.Service.ClientService;
+import by.zelenko.numerologic.backend.Service.UserService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
@@ -18,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 //
 @PageTitle("Клиенты | Numerology")
 public class ListView extends VerticalLayout {
-
     private final ClientService clientService;
     private Grid<Client> grid = new Grid<>(Client.class);
     private TextField searchField = new TextField();
@@ -27,15 +28,16 @@ public class ListView extends VerticalLayout {
     private ClientForm form;
 
     public ListView(@Autowired ClientService clientService) {
-        setHorizontalComponentAlignment(Alignment.CENTER,header);
+
         this.clientService = clientService;
+        setHorizontalComponentAlignment(Alignment.CENTER,header);
         addClassName("admin-view");
         header.add(h1);
         setSizeFull();
 
         form = new ClientForm();
-        form.addListener(ClientForm.SaveEvent.class, this::saveUser);
-        form.addListener(ClientForm.DeleteEvent.class, this::deleteUser);
+        form.addListener(ClientForm.SaveEvent.class, this::saveClient);
+        form.addListener(ClientForm.DeleteEvent.class, this::deleteClient);
         form.addListener(ClientForm.CloseEvent.class, e -> closeEditor());
 
         Div content = new Div(grid, form);
@@ -54,15 +56,15 @@ public class ListView extends VerticalLayout {
         searchField.setValueChangeMode(ValueChangeMode.LAZY);
         searchField.addValueChangeListener(e -> updateList());
 
-        Button addContactButton = new Button("Add contact");
-        addContactButton.addClickListener(click -> addContact());
+        Button addContactButton = new Button("Add client");
+        addContactButton.addClickListener(click -> addClient());
 
         HorizontalLayout toolbar = new HorizontalLayout(searchField, addContactButton);
         toolbar.addClassName("toolbar");
         return toolbar;
     }
 
-    void addContact() {
+    void addClient() {
         grid.asSingleSelect().clear();
         editClient(new Client());
     }
@@ -97,16 +99,15 @@ public class ListView extends VerticalLayout {
         removeClassName("editing");
     }
 
-    private void saveUser(ClientForm.SaveEvent event) {
+    private void saveClient(ClientForm.SaveEvent event) {
         clientService.save(event.getClient());
         updateList();
         closeEditor();
     }
 
-    private void deleteUser(ClientForm.DeleteEvent event) {
+    private void deleteClient(ClientForm.DeleteEvent event) {
         clientService.delete(event.getClient());
         updateList();
         closeEditor();
     }
-
 }
