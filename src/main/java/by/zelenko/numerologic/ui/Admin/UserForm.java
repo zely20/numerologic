@@ -1,4 +1,4 @@
-package by.zelenko.numerologic.ui;
+package by.zelenko.numerologic.ui.Admin;
 
 import by.zelenko.numerologic.backend.Entity.Role;
 import by.zelenko.numerologic.backend.Entity.Status;

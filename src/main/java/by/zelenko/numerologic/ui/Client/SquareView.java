@@ -1,4 +1,4 @@
-package by.zelenko.numerologic.ui;
+package by.zelenko.numerologic.ui.Client;
 
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
@@ -15,8 +15,8 @@ public class SquareView extends VerticalLayout {
     Label label;
     private H1 h1 = new H1("Список Клиентов");
     public SquareView() {
-        label = new Label("fskljfsl");
+        label = new Label("Label");
         header.add(h1);
-        add(header);
+        add(header, label);
     }
 }

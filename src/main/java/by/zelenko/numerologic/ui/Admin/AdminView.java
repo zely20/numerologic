@@ -1,4 +1,4 @@
-package by.zelenko.numerologic.ui;
+package by.zelenko.numerologic.ui.Admin;
 
 import by.zelenko.numerologic.backend.Service.UserService;
 import by.zelenko.numerologic.backend.Entity.User;
@@ -30,7 +30,7 @@ public class AdminView extends VerticalLayout {
     private UserForm form;
 
     public AdminView(@Autowired UserService userService) {
-        setHorizontalComponentAlignment(Alignment.CENTER,header);
+        setHorizontalComponentAlignment(Alignment.CENTER, header);
         this.userService = userService;
         addClassName("admin-view");
         header.add(h1);

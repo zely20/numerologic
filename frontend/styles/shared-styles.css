@@ -47,3 +47,8 @@ a[highlight] {
 .user-grid {
     background-color: #eeeeee;
 }
+
+.header label.label {
+    margin-left: 75%;
+    color: #4285f4;
+}

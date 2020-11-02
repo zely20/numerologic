@@ -1,9 +1,10 @@
-package by.zelenko.numerologic.ui;
+package by.zelenko.numerologic.ui.Client;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -31,7 +32,10 @@ public class MainView extends AppLayout {
     private void createHeader() {
         H1 logo = new H1("Numerology");
         logo.addClassName("logo");
-        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo);
+        Label label = new Label("Name of User");
+        label.addClassName("label");
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, label);
+        header.setSpacing(true);
         header.setDefaultVerticalComponentAlignment(
                 FlexComponent.Alignment.CENTER);
         header.setWidth("100%");

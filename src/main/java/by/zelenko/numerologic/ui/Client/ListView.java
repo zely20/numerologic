@@ -1,9 +1,7 @@
-package by.zelenko.numerologic.ui;
+package by.zelenko.numerologic.ui.Client;
 
 import by.zelenko.numerologic.backend.Entity.Client;
-import by.zelenko.numerologic.backend.Entity.User;
 import by.zelenko.numerologic.backend.Service.ClientService;
-import by.zelenko.numerologic.backend.Service.UserService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;

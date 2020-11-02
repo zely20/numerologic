@@ -1,4 +1,4 @@
-package by.zelenko.numerologic.ui;
+package by.zelenko.numerologic.ui.Client;
 
 import by.zelenko.numerologic.backend.Entity.Client;
 import com.vaadin.flow.component.ComponentEvent;
@@ -13,7 +13,15 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.Location;
+import com.vaadin.flow.router.OptionalParameter;
+import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.shared.Registration;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ClientForm extends FormLayout {
 
@@ -24,6 +32,7 @@ public class ClientForm extends FormLayout {
     Button save = new Button("Save");
     Button delete = new Button("Delete");
     Button close = new Button("Cancel");
+    Button choose = new Button("Выбрать");
     Binder<Client> binder = new BeanValidationBinder<>(Client.class);
     private Client client;
 
@@ -40,6 +49,7 @@ public class ClientForm extends FormLayout {
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_ERROR);
         close.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
+        choose.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 
         save.addClickShortcut(Key.ENTER);
         close.addClickShortcut(Key.ESCAPE);
@@ -47,10 +57,23 @@ public class ClientForm extends FormLayout {
         save.addClickListener(click -> validateAndSave());
         delete.addClickListener(click -> fireEvent(new DeleteEvent(this, client)));
         close.addClickListener(click -> fireEvent(new CloseEvent(this)));
+        //передача пользователя в другой лояут
+        choose.addClickListener(click -> {
+            try {
+                binder.writeBean(client);
+                Map<String, List<String>> parameter = new HashMap<>();
+                String id = client.getId().toString();
+                parameter.put("id", List.of(id));
+                QueryParameters queryParameters = new QueryParameters(parameter);
+                this.getUI().ifPresent(ui -> ui.navigate("square", queryParameters));
+            } catch (ValidationException e) {
+                e.printStackTrace();
+            }
+        });
 
         binder.addStatusChangeListener(evt -> save.setEnabled(binder.isValid()));
 
-        return new HorizontalLayout(save, delete, close);
+        return new HorizontalLayout(save, delete, close, choose);
     }
 
     public void setClient(Client client) {
