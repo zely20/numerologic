@@ -1,5 +1,6 @@
 package by.zelenko.numerologic.ui.Client;
 
+import by.zelenko.numerologic.ui.Square.SquareView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;

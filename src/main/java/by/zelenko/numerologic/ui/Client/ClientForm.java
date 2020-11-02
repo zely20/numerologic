@@ -13,9 +13,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.Location;
-import com.vaadin.flow.router.OptionalParameter;
 import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.shared.Registration;
 
@@ -59,16 +56,11 @@ public class ClientForm extends FormLayout {
         close.addClickListener(click -> fireEvent(new CloseEvent(this)));
         //передача пользователя в другой лояут
         choose.addClickListener(click -> {
-            try {
-                binder.writeBean(client);
                 Map<String, List<String>> parameter = new HashMap<>();
                 String id = client.getId().toString();
                 parameter.put("id", List.of(id));
                 QueryParameters queryParameters = new QueryParameters(parameter);
                 this.getUI().ifPresent(ui -> ui.navigate("square", queryParameters));
-            } catch (ValidationException e) {
-                e.printStackTrace();
-            }
         });
 
         binder.addStatusChangeListener(evt -> save.setEnabled(binder.isValid()));
