@@ -1,9 +1,6 @@
 package by.zelenko.numerologic.ui.Square;
 
 import by.zelenko.numerologic.backend.Entity.Client;
-import by.zelenko.numerologic.backend.Service.ClientService;
-import by.zelenko.numerologic.ui.Client.ClientForm;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
@@ -14,7 +11,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.*;
 import com.vaadin.flow.shared.Registration;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class SquareForm extends FormLayout {
 

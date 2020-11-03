@@ -1,12 +1,12 @@
 package by.zelenko.numerologic.backend.Reposotories;
 
 import by.zelenko.numerologic.backend.Entity.Client;
-import by.zelenko.numerologic.backend.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ClientRepo extends JpaRepository<Client, Long > {
 

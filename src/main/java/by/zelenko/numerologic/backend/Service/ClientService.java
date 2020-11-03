@@ -58,4 +58,8 @@ public class ClientService {
         }
         clientRepo.save(client);
     }
+
+    public Client geyById(Long id){
+        return clientRepo.getOne(id);
+    }
 }
