@@ -12,7 +12,6 @@ import java.util.Objects;
 @Entity
 @Data
 @Table(name = "clients")
-@AllArgsConstructor
 public class Client {
 
     @Id
@@ -35,6 +34,14 @@ public class Client {
 
 
     public Client() {
+    }
+
+    public Client(Long id, @NotNull String firstName, @NotNull String lastName, LocalDate birthDay, User user) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDay = birthDay;
+        this.user = user;
     }
 
     public String getFirstName() {
