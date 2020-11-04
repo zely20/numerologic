@@ -3,7 +3,9 @@ package by.zelenko.numerologic.ui.Square;
 import by.zelenko.numerologic.backend.Entity.Client;
 import by.zelenko.numerologic.backend.Service.ClientService;
 import by.zelenko.numerologic.ui.Client.MainView;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -17,6 +19,7 @@ import java.util.Map;
 public class SquareView extends VerticalLayout implements AfterNavigationObserver,HasUrlParameter<Long> {
 
     private HorizontalLayout header = new HorizontalLayout();
+    private HorizontalLayout r1 = new HorizontalLayout();
     private H1 h1 = new H1("Квадрат");
     private SquareForm form = new SquareForm();
     private final ClientService clientService;
@@ -30,7 +33,34 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         header.add(h1);
-        add(header);
+        Component component = drawSquare();
+        r1.add(component);
+        add(header,r1);
+    }
+
+    //рисуем квадрат
+
+    public Component drawSquare(){
+        VerticalLayout root = new VerticalLayout();
+        root.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+
+        HorizontalLayout lineOne  = new HorizontalLayout();
+        lineOne.setClassName("line_table");
+        lineOne.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        Label label = new Label("Число судьбы");
+        Label label2 = new Label("Доп числа");
+        Label label3 = new Label("");
+        Label label4 = new Label("Темперамент");
+        lineOne.add(label, label2, label3, label4);
+
+        HorizontalLayout lineTwo  = new HorizontalLayout();
+        lineTwo.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        HorizontalLayout lineThree  = new HorizontalLayout();
+        lineThree.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        HorizontalLayout lineFour  = new HorizontalLayout();
+        lineFour.setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        root.add(lineOne);
+        return root;
     }
 
     //получаем  id из URL
@@ -64,6 +94,7 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         } else {
             form.setClient(new Client());
         }
-        addComponentAtIndex(1, form);
+        r1.addComponentAsFirst(form);
+       // addComponentAtIndex(1, form);
     }
 }
