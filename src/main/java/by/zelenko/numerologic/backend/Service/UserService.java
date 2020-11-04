@@ -1,7 +1,7 @@
 package by.zelenko.numerologic.backend.Service;
 
-import by.zelenko.numerologic.backend.Reposotories.UserRepo;
 import by.zelenko.numerologic.backend.Entity.User;
+import by.zelenko.numerologic.backend.Reposotories.UserRepo;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

@@ -8,6 +8,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ClientService {
     }
 
     public void delete(Client client) {
-        LOG.log(Level.DEBUG, "from ClientServise delete");
+        LOG.log(Level.DEBUG, "from Client Service delete");
         System.out.println(client);
         clientRepo.delete(client);
     }
