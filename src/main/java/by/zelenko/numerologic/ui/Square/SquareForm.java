@@ -12,6 +12,8 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.*;
 import com.vaadin.flow.shared.Registration;
 
+import java.time.format.DateTimeFormatter;
+
 public class SquareForm extends FormLayout {
 
     private TextField firstName = new TextField("Фамилия");
@@ -21,6 +23,7 @@ public class SquareForm extends FormLayout {
     private Button choose = new Button("Рассчитать");
     private Binder<Client> binder = new BeanValidationBinder<>(Client.class);
     private Client client;
+    private String date;
 
     public SquareForm() {
         addClassName("client-form");
@@ -47,6 +50,7 @@ public class SquareForm extends FormLayout {
         binder.addStatusChangeListener(evt -> save.setEnabled(binder.isValid()));
 
         save.addClickListener(click -> validateAndSave());
+        choose.addClickListener(click -> getDate());
         return new HorizontalLayout(save, choose);
     }
 
@@ -64,16 +68,32 @@ public class SquareForm extends FormLayout {
         }
     }
 
+    public void getDate() {
+            date = birthDay.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            fireEvent(new SquareForm.calculateEvent(this, date));
+            System.out.println(date + "from form");
+    }
+
     public static abstract class SquareFormEvent extends ComponentEvent<SquareForm> {
         private Client client;
+        private String date;
 
         protected SquareFormEvent(SquareForm source, Client client) {
             super(source, false);
             this.client = client;
         }
 
+        protected SquareFormEvent(SquareForm source, String date) {
+            super(source, false);
+            this.date = date;
+        }
+
         public Client getClient() {
             return client;
+        }
+
+        public String getDate() {
+            return date;
         }
     }
 
@@ -83,17 +103,17 @@ public class SquareForm extends FormLayout {
         }
     }
 
+    public static class calculateEvent extends SquareForm.SquareFormEvent {
+        calculateEvent(SquareForm source, String date) {
+            super(source, date);
+        }
+    }
+
     public static class DeleteEvent extends SquareForm.SquareFormEvent {
         DeleteEvent(SquareForm source, Client client) {
             super(source, client);
         }
 
-    }
-
-    public static class CloseEvent extends SquareForm.SquareFormEvent {
-        CloseEvent(SquareForm source) {
-            super(source, null);
-        }
     }
 
     public <T extends ComponentEvent<?>> Registration addListener(Class<T> eventType,

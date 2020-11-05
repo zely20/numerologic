@@ -22,15 +22,15 @@ import java.util.Map;
 
 public class ClientForm extends FormLayout {
 
-    TextField firstName = new TextField("Фамилия");
-    TextField LastName = new TextField("Имя");
-    DatePicker birthDay = new DatePicker();
+    private TextField firstName = new TextField("Фамилия");
+    private TextField LastName = new TextField("Имя");
+    private DatePicker birthDay = new DatePicker();
 
-    Button save = new Button("Save");
-    Button delete = new Button("Delete");
-    Button close = new Button("Cancel");
-    Button choose = new Button("Выбрать");
-    Binder<Client> binder = new BeanValidationBinder<>(Client.class);
+    private Button save = new Button("Save");
+    private Button delete = new Button("Delete");
+    private Button close = new Button("Cancel");
+    private Button choose = new Button("Выбрать");
+    private Binder<Client> binder = new BeanValidationBinder<>(Client.class);
     private Client client;
 
     public ClientForm() {
@@ -40,8 +40,6 @@ public class ClientForm extends FormLayout {
                 LastName,
                 birthDay,
                 createButtonsLayout());
-
-
     }
 
     private HorizontalLayout createButtonsLayout() {
@@ -88,6 +86,7 @@ public class ClientForm extends FormLayout {
     // Events
     public static abstract class ClientFormEvent extends ComponentEvent<ClientForm> {
         private Client client;
+
 
         protected ClientFormEvent(ClientForm source, Client client) {
             super(source, false);
