@@ -81,8 +81,6 @@ public class ClientForm extends FormLayout {
             e.printStackTrace();
         }
     }
-
-
     // Events
     public static abstract class ClientFormEvent extends ComponentEvent<ClientForm> {
         private Client client;
