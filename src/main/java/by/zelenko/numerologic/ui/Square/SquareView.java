@@ -1,6 +1,7 @@
 package by.zelenko.numerologic.ui.Square;
 
 import by.zelenko.numerologic.backend.Entity.Client;
+import by.zelenko.numerologic.backend.Logic.Calculate;
 import by.zelenko.numerologic.backend.Service.ClientService;
 import by.zelenko.numerologic.ui.Client.MainView;
 import com.github.appreciated.card.Card;
@@ -50,14 +51,15 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
     }
     //рисуем квадрат
     public Component drawSquare(String date){
+        Calculate calculate = new Calculate();
+        Map<String,Integer> data = calculate.calculate(date);
         VerticalLayout root = new VerticalLayout();
         root.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-
         HorizontalLayout lineOne  = new HorizontalLayout();
         lineOne.setClassName("line_table");
         lineOne.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card11  = new Card(new TitleLabel("Число судьбы").withWhiteSpaceNoWrap(),
-                new PrimaryLabel(date));
+                new PrimaryLabel(String.valueOf(data.get("fateNumber"))));
         card11.setHeight("128px");
         card11.setWidth("200px");
         Card card12  = new Card(new TitleLabel("Доп числа").withWhiteSpaceNoWrap(),
@@ -68,7 +70,7 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         card13.setHeight("128px");
         card13.setWidth("200px");
         Card card14  = new Card(new TitleLabel("Темперамент").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text4"));
+                new PrimaryLabel(String.valueOf(data.get("temperament"))));
         card14.setHeight("128px");
         card14.setWidth("200px");
         lineOne.add(card11, card12, card13, card14);
@@ -76,19 +78,19 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         HorizontalLayout lineTwo  = new HorizontalLayout();
         lineTwo.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card21  = new Card(new TitleLabel("Характер").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text"));
+                new PrimaryLabel(String.valueOf(data.get("character"))));
         card21.setHeight("128px");
         card21.setWidth("200px");
         Card card22  = new Card(new TitleLabel("Здоровье").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text2"));
+                new PrimaryLabel(String.valueOf(data.get("health"))));
         card22.setHeight("128px");
         card22.setWidth("200px");
         Card card23 = new Card(new TitleLabel("Удача").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("3"));
+                new PrimaryLabel(String.valueOf(data.get("luck"))));
         card23.setHeight("128px");
         card23.setWidth("200px");
         Card card24  = new Card(new TitleLabel("Цель").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("10"));
+                new PrimaryLabel(String.valueOf(data.get("target"))));
         card24.setHeight("128px");
         card24.setWidth("200px");
         lineTwo.add(card21,card22,card23,card24);
@@ -96,39 +98,39 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         HorizontalLayout lineThree  = new HorizontalLayout();
         lineThree.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card31  = new Card(new TitleLabel("Энергия").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text"));
+                new PrimaryLabel(String.valueOf(data.get("energy"))));
         card31.setHeight("128px");
         card31.setWidth("200px");
         Card card32  = new Card(new TitleLabel("Логика").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text2"));
+                new PrimaryLabel(String.valueOf(data.get("logic"))));
         card32.setHeight("128px");
         card32.setWidth("200px");
         Card card33 = new Card(new TitleLabel("Долг").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("3"));
+                new PrimaryLabel(String.valueOf(data.get("trust"))));
         card33.setHeight("128px");
         card33.setWidth("200px");
         Card card34  = new Card(new TitleLabel("Семья").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("10"));
+                new PrimaryLabel(String.valueOf(data.get("family"))));
         card34.setHeight("128px");
         card34.setWidth("200px");
         lineThree.add(card31,card32,card33,card34);
 
         HorizontalLayout lineFour  = new HorizontalLayout();
         lineFour.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-        Card card41  = new Card(new TitleLabel("Энергия").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text"));
+        Card card41  = new Card(new TitleLabel("Интерес").withWhiteSpaceNoWrap(),
+                new PrimaryLabel(String.valueOf(data.get("interest"))));
         card41.setHeight("128px");
         card41.setWidth("200px");
-        Card card42  = new Card(new TitleLabel("Логика").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text2"));
+        Card card42  = new Card(new TitleLabel("Труд").withWhiteSpaceNoWrap(),
+                new PrimaryLabel(String.valueOf(data.get("work"))));
         card42.setHeight("128px");
         card42.setWidth("200px");
-        Card card43 = new Card(new TitleLabel("Долг").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("3"));
+        Card card43 = new Card(new TitleLabel("Память").withWhiteSpaceNoWrap(),
+                new PrimaryLabel(String.valueOf(data.get("memory"))));
         card43.setHeight("128px");
         card43.setWidth("200px");
-        Card card44  = new Card(new TitleLabel("Семья").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("10"));
+        Card card44  = new Card(new TitleLabel("Привычки").withWhiteSpaceNoWrap(),
+                new PrimaryLabel(String.valueOf(data.get("habit"))));
         card44.setHeight("128px");
         card44.setWidth("200px");
         lineFour.add(card41,card42,card43,card44);
@@ -136,7 +138,7 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         HorizontalLayout lineFive  = new HorizontalLayout();
         lineFour.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card51  = new Card(new TitleLabel("Быт").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text"));
+                new PrimaryLabel(String.valueOf(data.get("bit"))));
         card51.setHeight("128px");
         card51.setWidth("200px");
         lineFive.add(card51);

@@ -24,7 +24,7 @@ public class Calculate {
         return result;
     }
 
-    public void calculate(String date) {
+    public  Map<String, Integer> calculate(String date) {
         Integer firstNumber = 0;
         Integer thirdNumber = 0;
         ArrayList<Integer> afterParser = parseDate(date);
@@ -72,7 +72,7 @@ public class Calculate {
             }
             this.result.put("fateNumber",fateNumber);
         }
-        System.out.println(result);
+        return result;
     }
 
     //внешний квдрат
