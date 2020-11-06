@@ -19,13 +19,13 @@ import java.util.Map;
 @PageTitle("квадрат | Numerology")
 public class SquareView extends VerticalLayout implements AfterNavigationObserver,HasUrlParameter<Long> {
 
-    private HorizontalLayout header = new HorizontalLayout();
     private HorizontalLayout r1 = new HorizontalLayout();
-    //private H1 h1 = new H1("Квадрат");
     private SquareForm form = new SquareForm();
     private final ClientService clientService;
     public Client client;
     public Long id;
+    private String date;
+    private Component component;
 
     public SquareView(ClientService clientService) {
         this.clientService = clientService;
@@ -34,18 +34,22 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         form.addListener(SquareForm.calculateEvent.class, this::getDate);
         setSizeFull();
         setAlignItems(Alignment.CENTER);
-        //header.add(h1);
-        Component component = drawSquare();
-        r1.add(component);
         add(r1);
     }
     //пытаемся взять дату
     private void getDate(SquareForm.calculateEvent event) {
-        System.out.println(event.getDate() + "from View");
+        this.date = event.getDate();
+        if(component == null) {
+            component = drawSquare(date);
+            r1.add(component);
+        } else {
+            r1.remove(component);
+            component = drawSquare(date);
+            r1.add(component);
+        }
     }
-
     //рисуем квадрат
-    public Component drawSquare(){
+    public Component drawSquare(String date){
         VerticalLayout root = new VerticalLayout();
         root.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
@@ -53,26 +57,39 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         lineOne.setClassName("line_table");
         lineOne.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card11  = new Card(new TitleLabel("Число судьбы").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text"));
+                new PrimaryLabel(date));
+        card11.setHeight("128px");
+        card11.setWidth("200px");
         Card card12  = new Card(new TitleLabel("Доп числа").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary text2"));
+                new PrimaryLabel("Some primary "));
+        card12.setHeight("128px");
+        card12.setWidth("200px");
         Card card13 = new Card();
+        card13.setHeight("128px");
         card13.setWidth("200px");
         Card card14  = new Card(new TitleLabel("Темперамент").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text4"));
+        card14.setHeight("128px");
+        card14.setWidth("200px");
         lineOne.add(card11, card12, card13, card14);
 
         HorizontalLayout lineTwo  = new HorizontalLayout();
         lineTwo.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card21  = new Card(new TitleLabel("Характер").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text"));
+        card21.setHeight("128px");
+        card21.setWidth("200px");
         Card card22  = new Card(new TitleLabel("Здоровье").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text2"));
+        card22.setHeight("128px");
+        card22.setWidth("200px");
         Card card23 = new Card(new TitleLabel("Удача").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("3"));
+        card23.setHeight("128px");
         card23.setWidth("200px");
         Card card24  = new Card(new TitleLabel("Цель").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("10"));
+        card24.setHeight("128px");
         card24.setWidth("200px");
         lineTwo.add(card21,card22,card23,card24);
 
@@ -80,13 +97,19 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         lineThree.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card31  = new Card(new TitleLabel("Энергия").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text"));
+        card31.setHeight("128px");
+        card31.setWidth("200px");
         Card card32  = new Card(new TitleLabel("Логика").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text2"));
+        card32.setHeight("128px");
+        card32.setWidth("200px");
         Card card33 = new Card(new TitleLabel("Долг").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("3"));
+        card33.setHeight("128px");
         card33.setWidth("200px");
         Card card34  = new Card(new TitleLabel("Семья").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("10"));
+        card34.setHeight("128px");
         card34.setWidth("200px");
         lineThree.add(card31,card32,card33,card34);
 
@@ -94,13 +117,19 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         lineFour.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card41  = new Card(new TitleLabel("Энергия").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text"));
+        card41.setHeight("128px");
+        card41.setWidth("200px");
         Card card42  = new Card(new TitleLabel("Логика").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text2"));
+        card42.setHeight("128px");
+        card42.setWidth("200px");
         Card card43 = new Card(new TitleLabel("Долг").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("3"));
+        card43.setHeight("128px");
         card43.setWidth("200px");
         Card card44  = new Card(new TitleLabel("Семья").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("10"));
+        card44.setHeight("128px");
         card44.setWidth("200px");
         lineFour.add(card41,card42,card43,card44);
 
@@ -108,13 +137,13 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         lineFour.setDefaultVerticalComponentAlignment(Alignment.CENTER);
         Card card51  = new Card(new TitleLabel("Быт").withWhiteSpaceNoWrap(),
                 new PrimaryLabel("Some primary text"));
+        card51.setHeight("128px");
         card51.setWidth("200px");
         lineFive.add(card51);
 
         root.add(lineOne, lineTwo, lineThree, lineFour, lineFive);
         return root;
     }
-
     //получаем  id из URL
     @Override
     public void setParameter(BeforeEvent event,
@@ -133,8 +162,6 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         this.client = clientService.geyById(id);
     }
     //При открытие страницы квадрат добавляется новый пустой клиент нужно что-то с этим придумать
-
-
     private void saveClient(SquareForm.SaveEvent event) {
         clientService.save(event.getClient());
         Notification.show("Saved");
@@ -149,5 +176,6 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
             form.setClient(new Client());
         }
         r1.addComponentAsFirst(form);
+        add(r1);
     }
 }
