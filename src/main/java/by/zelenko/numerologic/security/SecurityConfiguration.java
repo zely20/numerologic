@@ -26,10 +26,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .requestCache().requestCache(new CustomRequestCache())
                 .and().authorizeRequests()
+                .antMatchers("/Admin/**").hasRole("ADMIN")
+                .antMatchers("/**").hasAnyRole("USER","ADMIN")
                 .requestMatchers(SecurityUtils::isFrameworkInternalRequest).permitAll()
-
                 .anyRequest().authenticated()
-
                 .and().formLogin()
                 .loginPage(LOGIN_URL).permitAll()
                 .loginProcessingUrl(LOGIN_PROCESSING_URL)
@@ -45,8 +45,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .password("{noop}100")
                         .roles("USER")
                         .build();
+        UserDetails admin =
+                User.withUsername("admin")
+                        .password("{noop}100")
+                        .roles("ADMIN")
+                        .build();
 
-        return new InMemoryUserDetailsManager(user);
+        return new InMemoryUserDetailsManager(user, admin);
     }
 
     @Override
@@ -63,5 +68,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/frontend/**",
                 "/styles/**");
     }
-
 }

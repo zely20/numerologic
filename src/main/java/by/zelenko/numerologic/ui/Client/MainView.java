@@ -13,6 +13,10 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.security.Principal;
 
 
 @Route("")
@@ -35,7 +39,9 @@ public class MainView extends AppLayout {
         H1 logo = new H1("Numerology");
         logo.addClassName("logo");
         Anchor logout = new Anchor("logout", "Log out");
-        Label label = new Label("Name of User");
+        Authentication name = SecurityContextHolder.getContext().getAuthentication();
+        name.getName();
+        Label label = new Label(name.getName());
         label.addClassName("label");
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, label, logout);
         header.expand(logo);
