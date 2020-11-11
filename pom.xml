@@ -11,8 +11,8 @@
 	<groupId>by.zelenko</groupId>
 	<artifactId>numerologic</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>numerologic</name>
-	<description>Application for Numerologic</description>
+	<name>numerology</name>
+	<description>Application for Numerology</description>
 
 	<properties>
 		<java.version>13</java.version>
@@ -28,6 +28,14 @@
 	</repositories>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>

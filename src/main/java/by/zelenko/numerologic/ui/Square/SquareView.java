@@ -52,7 +52,7 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
     }
 
     //рисуем квадрат
-    public Component drawSquare(String date) {
+    private Component drawSquare(String date) {
         Calculate calculate = new Calculate();
         Map<String, Integer> data = calculate.calculate(date);
         VerticalLayout root = new VerticalLayout();
