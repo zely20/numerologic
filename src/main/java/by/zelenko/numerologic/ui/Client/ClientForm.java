@@ -13,7 +13,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
-import com.vaadin.flow.router.*;
+import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.shared.Registration;
 
 import java.util.HashMap;

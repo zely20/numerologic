@@ -15,7 +15,6 @@ import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route(value="clients", layout = MainView.class)
-//
 @PageTitle("Клиенты | Numerology")
 public class ListView extends VerticalLayout {
     private final ClientService clientService;
