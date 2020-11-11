@@ -58,12 +58,14 @@ public class SquareView extends VerticalLayout implements AfterNavigationObserve
         HorizontalLayout lineOne  = new HorizontalLayout();
         lineOne.setClassName("line_table");
         lineOne.setDefaultVerticalComponentAlignment(Alignment.CENTER);
-        Card card11  = new Card(new TitleLabel("Число судьбы").withWhiteSpaceNoWrap(),
-                new PrimaryLabel(String.valueOf(data.get("fateNumber"))));
+        Card card11  = new Card(new TitleLabel("Число судьбы").withWhiteSpaceNoWrap()
+                /*new PrimaryLabel(String.valueOf(data.get("fateNumber")))*/);
+        card11.add(new PrimaryLabel(String.valueOf(data.get("fateNumber"))));
         card11.setHeight("128px");
         card11.setWidth("200px");
         Card card12  = new Card(new TitleLabel("Доп числа").withWhiteSpaceNoWrap(),
-                new PrimaryLabel("Some primary "));
+                new PrimaryLabel(data.get("firstNumber") + "/" +
+                        data.get("secondNumber") + "/" + data.get("thirdNumber") + "/" + data.get("fourthNumber")));
         card12.setHeight("128px");
         card12.setWidth("200px");
         Card card13 = new Card();

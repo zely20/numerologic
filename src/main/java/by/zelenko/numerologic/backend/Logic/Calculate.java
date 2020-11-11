@@ -5,13 +5,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Calculate {
-
     private Map<String, Integer> result = new HashMap<>();
-
-    public static void main(String[] args) {
-        Calculate calc = new Calculate();
-        calc.calculate("28/12/1725");
-    }
+    private final static String FIRST_NUMBER = "firstNumber";
+    private final static String SECOND_NUMBER = "secondNumber";
+    private final static String THIRD_NUMBER = "thirdNumber";
+    private final static String FOURTH_NUMBER = "fourthNumber";
+    private final static String FATE_NUMBER = "fateNumber";
+    private final static String TARGET = "target";
+    private final static String CHARACTER = "character";
+    private final static String HEALTH = "health";
+    private final static String LUCK = "luck";
+    private final static String FAMILY = "family";
+    private final static String ENERGY = "energy";
+    private final static String LOGIC = "logic";
+    private final static String TRUST = "trust";
+    private final static String HABIT = "habit";
+    private final static String INTEREST = "interest";
+    private final static String WORK = "work";
+    private final static String MEMORY = "memory";
+    private final static String TEMPERAMENT = "temperament";
+    private final static String BIT = "bit";
 
     private ArrayList<Integer> parseDate(String date) {
         ArrayList<Integer> result = new ArrayList<>();
@@ -32,23 +45,30 @@ public class Calculate {
             firstNumber += num;
         }
         System.out.println(firstNumber);
-        this.result.put("firstNumber", firstNumber);
+        this.result.put(FIRST_NUMBER, firstNumber);
         if (firstNumber < 10) {
-            this.result.put("secondNumber", firstNumber);
+            this.result.put(SECOND_NUMBER, firstNumber);
         } else {
-            this.result.put("secondNumber", sumAfterSplit(firstNumber));
+            this.result.put(SECOND_NUMBER, sumAfterSplit(firstNumber));
         }
+
         if (afterParser.get(0) == 0) {
             thirdNumber = firstNumber - afterParser.get(1) * 2;
-            this.result.put("thirdNumber", thirdNumber);
+            if(thirdNumber < 0){
+                thirdNumber = Math.abs(thirdNumber);
+            }
+            this.result.put(THIRD_NUMBER, thirdNumber);
         } else {
             thirdNumber = firstNumber - afterParser.get(0) * 2;
-            this.result.put("thirdNumber", thirdNumber);
+            if(thirdNumber < 0){
+                thirdNumber = Math.abs(thirdNumber);
+            }
+            this.result.put(THIRD_NUMBER, thirdNumber);
         }
         if(thirdNumber < 10) {
-            this.result.put("fourthNumber", thirdNumber);
+            this.result.put(FOURTH_NUMBER, thirdNumber);
         } else {
-            this.result.put("fourthNumber", sumAfterSplit(thirdNumber));
+            this.result.put(FOURTH_NUMBER, sumAfterSplit(thirdNumber));
         }
         System.out.println(result);
 
@@ -61,7 +81,7 @@ public class Calculate {
         System.out.println(result);
         //поиск числа судьбы
         if(firstNumber < 10) {
-            this.result.put("fateNumber", firstNumber);
+            this.result.put(FATE_NUMBER, firstNumber);
         } else {
             Integer fateNumber = firstNumber;
             while (fateNumber > 9){
@@ -70,7 +90,7 @@ public class Calculate {
                     break;
                 }
             }
-            this.result.put("fateNumber",fateNumber);
+            this.result.put(FATE_NUMBER,fateNumber);
         }
         return result;
     }
@@ -78,11 +98,11 @@ public class Calculate {
     //внешний квдрат
     private Map <String, Integer>  outSquare(Map <String, Integer> map) {
         Map <String, Integer> result = new HashMap<>();
-        result.put("target", sumForOutSquare(map,"character","health", "luck"));
-        result.put("family", sumForOutSquare(map,"energy","logic", "trust"));
-        result.put("habit", sumForOutSquare(map,"interest","work", "memory"));
-        result.put("temperament", sumForOutSquare(map,"interest","logic", "luck"));
-        result.put("bit", sumForOutSquare(map,"health","logic", "work"));
+        result.put(TARGET, sumForOutSquare(map,CHARACTER,HEALTH, LUCK));
+        result.put(FAMILY, sumForOutSquare(map,ENERGY,LOGIC, TRUST));
+        result.put(HABIT, sumForOutSquare(map,INTEREST,WORK, MEMORY));
+        result.put(TEMPERAMENT, sumForOutSquare(map,INTEREST,LOGIC, LUCK));
+        result.put(BIT, sumForOutSquare(map,HEALTH,LOGIC, WORK));
         return result;
     }
 
@@ -128,23 +148,23 @@ public class Calculate {
                     resultForMap += factor;
                 }
                 switch (i){
-                    case 1: result.put("character", resultForMap);
+                    case 1: result.put(CHARACTER, resultForMap);
                     break;
-                    case 2: result.put("energy", resultForMap);
+                    case 2: result.put(ENERGY, resultForMap);
                         break;
-                    case 3: result.put("interest", resultForMap);
+                    case 3: result.put(INTEREST, resultForMap);
                         break;
-                    case 4: result.put("health", resultForMap);
+                    case 4: result.put(HEALTH, resultForMap);
                         break;
-                    case 5: result.put("logic", resultForMap);
+                    case 5: result.put(LOGIC, resultForMap);
                         break;
-                    case 6: result.put("work", resultForMap);
+                    case 6: result.put(WORK, resultForMap);
                         break;
-                    case 7: result.put("luck", resultForMap);
+                    case 7: result.put(LUCK, resultForMap);
                         break;
-                    case 8: result.put("trust", resultForMap);
+                    case 8: result.put(TRUST, resultForMap);
                         break;
-                    case 9: result.put("memory", resultForMap);
+                    case 9: result.put(MEMORY, resultForMap);
                         break;
                     default: ;
                         break;
