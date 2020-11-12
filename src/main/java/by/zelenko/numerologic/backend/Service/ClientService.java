@@ -30,12 +30,16 @@ public class ClientService {
         return clientRepo.findAll();
     }
 
-    public List<Client> findAll(String stringFilter) {
+    public List<Client> findByUserName(Long id) {
+        return clientRepo.findClientsByUserId(id);
+    }
+
+    public List<Client> findAll(String stringFilter,  User user) {
         if (stringFilter == null || stringFilter.isEmpty()) {
             LOG.log(Level.DEBUG, "from find");
-            return clientRepo.findAll();
+            return clientRepo.findClientsByUserId(user.getId());
         } else {
-            return clientRepo.search(stringFilter);
+            return clientRepo.search(stringFilter,user);
         }
     }
 

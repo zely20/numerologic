@@ -6,6 +6,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +15,12 @@ import java.util.List;
 public class UserService {
 
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
     private static final Logger LOG = LogManager.getLogger(UserService.class.getName());
 
-    public UserService(@Autowired UserRepo userRepo) {
+    public UserService(@Autowired UserRepo userRepo, @Autowired PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> findAll(){
@@ -47,10 +50,12 @@ public class UserService {
             LOG.log(Level.DEBUG, "Contact is null. Are you sure you have connected your form to the application?");
             return;
         }
+        String pass = passwordEncoder.encode(user.getPassword());
+        user.setPassword(pass);
         userRepo.save(user);
     }
 
     public User findByUsername (String username){
-        return userRepo.findByUsername(username);
+        return userRepo.findByUsername(username).get();
     }
 }

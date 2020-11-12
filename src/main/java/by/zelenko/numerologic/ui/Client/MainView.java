@@ -16,8 +16,6 @@ import com.vaadin.flow.router.RouterLink;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import java.security.Principal;
-
 
 @Route("")
 @CssImport("./styles/shared-styles.css")
@@ -40,7 +38,6 @@ public class MainView extends AppLayout {
         logo.addClassName("logo");
         Anchor logout = new Anchor("logout", "Log out");
         Authentication name = SecurityContextHolder.getContext().getAuthentication();
-        name.getName();
         Label label = new Label(name.getName());
         label.addClassName("label");
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), logo, label, logout);

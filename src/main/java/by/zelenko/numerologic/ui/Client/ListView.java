@@ -1,7 +1,9 @@
 package by.zelenko.numerologic.ui.Client;
 
 import by.zelenko.numerologic.backend.Entity.Client;
+import by.zelenko.numerologic.backend.Entity.User;
 import by.zelenko.numerologic.backend.Service.ClientService;
+import by.zelenko.numerologic.backend.Service.UserService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Div;
@@ -13,10 +15,13 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Route(value="clients", layout = MainView.class)
 @PageTitle("Клиенты | Numerology")
 public class ListView extends VerticalLayout {
+    private final UserService userService;
     private final ClientService clientService;
     private Grid<Client> grid = new Grid<>(Client.class);
     private TextField searchField = new TextField();
@@ -24,10 +29,10 @@ public class ListView extends VerticalLayout {
     private HorizontalLayout header = new HorizontalLayout();
     private ClientForm form;
 
-    public ListView(@Autowired ClientService clientService) {
-
+    public ListView(@Autowired UserService userService, @Autowired ClientService clientService) {
+        this.userService = userService;
         this.clientService = clientService;
-        setHorizontalComponentAlignment(Alignment.CENTER,header);
+        setHorizontalComponentAlignment(Alignment.CENTER, header);
         addClassName("admin-view");
         header.add(h1);
         setSizeFull();
@@ -67,12 +72,13 @@ public class ListView extends VerticalLayout {
     }
 
     private void updateList() {
-        grid.setItems(clientService.findAll(searchField.getValue()));
+        Authentication name = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByUsername(name.getName());
+        grid.setItems(clientService.findAll(searchField.getValue(), user));
     }
 
     private void configGrid() {
         addClassName("user-grid");
-
         setSizeFull();
         grid.setColumns("firstName", "lastName", "birthDay");
         grid.getColumns().forEach(col -> col.setAutoWidth(true));

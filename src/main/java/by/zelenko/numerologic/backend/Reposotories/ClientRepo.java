@@ -1,6 +1,7 @@
 package by.zelenko.numerologic.backend.Reposotories;
 
 import by.zelenko.numerologic.backend.Entity.Client;
+import by.zelenko.numerologic.backend.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +13,7 @@ import java.util.Optional;
 public interface ClientRepo extends JpaRepository<Client, Long > {
 
     @Query("select c from Client c " +
-            "where lower(c.firstName) like lower(concat('%', :searchTerm, '%'))") //
-    List<Client> search(@Param("searchTerm") String searchTerm);
-   // List<Client> findClientsByUserId(Integer id);
+            "where c.user=:user AND lower(c.firstName) like lower(concat('%', :searchTerm, '%'))") //
+    List<Client> search(@Param("searchTerm") String searchTerm, @Param("user")User user);
+    List<Client> findClientsByUserId(Long id);
 }
