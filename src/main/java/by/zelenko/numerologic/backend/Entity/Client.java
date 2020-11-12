@@ -1,6 +1,5 @@
 package by.zelenko.numerologic.backend.Entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 

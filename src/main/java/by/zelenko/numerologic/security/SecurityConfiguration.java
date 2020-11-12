@@ -63,23 +63,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return daoAuthenticationProvider;
     }
 
-/*    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withUsername("user")
-                        .password("{noop}100")
-                        .roles("USER")
-                        .build();
-        UserDetails admin =
-                User.withUsername("admin")
-                        .password("{noop}100")
-                        .roles("ADMIN")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user, admin);
-    }*/
-
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers(

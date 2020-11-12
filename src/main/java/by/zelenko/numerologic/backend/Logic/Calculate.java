@@ -70,15 +70,12 @@ public class Calculate {
         } else {
             this.result.put(FOURTH_NUMBER, sumAfterSplit(thirdNumber));
         }
-        System.out.println(result);
-
 
         //запуск внутреннего квадрата
         this.result.putAll(innerSquare(afterParser, this.result));
         //запкск внешний квадрат
         this.result.putAll(outSquare(this.result));
 
-        System.out.println(result);
         //поиск числа судьбы
         if(firstNumber < 10) {
             this.result.put(FATE_NUMBER, firstNumber);

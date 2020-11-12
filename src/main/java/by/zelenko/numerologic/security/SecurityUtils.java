@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 public class SecurityUtils {
 
     private SecurityUtils() {
-        // Util methods only
     }
 
     static boolean isFrameworkInternalRequest(HttpServletRequest request) {
