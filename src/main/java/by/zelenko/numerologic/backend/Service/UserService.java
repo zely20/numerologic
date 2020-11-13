@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class UserService {
@@ -50,8 +52,12 @@ public class UserService {
             LOG.log(Level.DEBUG, "Contact is null. Are you sure you have connected your form to the application?");
             return;
         }
-        String pass = passwordEncoder.encode(user.getPassword());
-        user.setPassword(pass);
+        Pattern pattern = Pattern.compile("\\$2[aby]");
+        Matcher matcher = pattern.matcher(user.getPassword());
+        if(!matcher.lookingAt()){
+            String pass = passwordEncoder.encode(user.getPassword());
+            user.setPassword(pass);
+        }
         userRepo.save(user);
     }
 
