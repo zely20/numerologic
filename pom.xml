@@ -27,6 +27,7 @@
 	</repository>
 	</repositories>
 
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -91,6 +92,12 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.4.1.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-maven-plugin</artifactId>
+			<version>14.4.2</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
