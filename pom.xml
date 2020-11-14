@@ -122,8 +122,8 @@
 	</dependencyManagement>
 
 	<profiles>
-	<!--<profile>
-		&lt;!&ndash; Production mode is activated using -Pproduction &ndash;&gt;
+	 <profile>
+
 		<id>production</id>
 		<properties>
 			<vaadin.productionMode>true</vaadin.productionMode>
@@ -160,7 +160,7 @@
 				</plugin>
 			</plugins>
 		</build>
-	</profile>-->
+	</profile>
 		<profile>
 			<id>npm</id>
 			<build>
@@ -188,7 +188,6 @@
 				</plugins>
 			</build>
 		</profile>
-
 	</profiles>
 	<build>
 		<plugins>
@@ -215,7 +214,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-
 
 			</plugin>
 		</plugins>
